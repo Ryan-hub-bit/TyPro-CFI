@@ -1,4 +1,4 @@
-TyPro: Forward CFI for C-Style Indirect Function Calls Using Type Propagation
+cdTyPro: Forward CFI for C-Style Indirect Function Calls Using Type Propagation
 =============================================================================
 TyPro is a C compiler which protects C-style indirect calls from being tampered.
 The relevant publication is currently under submission.

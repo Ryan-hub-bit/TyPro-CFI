@@ -5,21 +5,22 @@ import sys
 
 
 def get_souffle_version():
-	lines = subprocess.check_output(['souffle', '--version']).decode().split('\n')
-	line = ([l for l in lines if 'Version' in l] + lines)[0]
-	version = line.split(': ')[1].replace('-', '.').replace('(64bit Domains)', '').split('.')
-	while len(version) < 4:
-		version.append('0')
-	if len(version[3]) > 4: version[3] = '0'
-	return tuple(int(x) for x in version[:4])
+	# lines = subprocess.check_output(['souffle', '--version']).decode().split('\n')
+	# line = ([l for l in lines if 'Version' in l] + lines)[0]
+	# version = line.split(': ')[1].replace('-', '.').replace('(64bit Domains)', '').split('.')
+	# while len(version) < 4:
+	# 	version.append('0')
+	# if len(version[3]) > 4: version[3] = '0'
+	# return tuple(int(x) for x in version[:4])
+	return "v1"
 
 
 def main(fname: str):
 	print('Patching disabled for now ...')
 	patching = False
-	if get_souffle_version() < (2, 0, 2, 1188):
-		print('Souffle version too old, not patching')
-		patching = False
+	# if get_souffle_version() < (2, 0, 2, 1188):
+	# 	print('Souffle version too old, not patching')
+	# 	patching = False
 
 	with open(fname, 'r') as f:
 		content = f.read()

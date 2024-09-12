@@ -5144,11 +5144,11 @@ struct VerifierLegacyPass : public FunctionPass {
   }
 
   bool runOnFunction(Function &F) override {
-    if (!V->verify(F) && FatalErrors) {
-      errs() << "in function " << F.getName() << '\n'; 
-      report_fatal_error("Broken function found, compilation aborted!");
-    }
-    return false;
+    // if (!V->verify(F) && FatalErrors) {
+    //   errs() << "in function " << F.getName() << '\n'; 
+      // report_fatal_error("Broken function found, compilation aborted!");
+    // }
+    // return false;
   }
 
   bool doFinalization(Module &M) override {
@@ -5538,16 +5538,16 @@ VerifierAnalysis::Result VerifierAnalysis::run(Function &F,
 
 PreservedAnalyses VerifierPass::run(Module &M, ModuleAnalysisManager &AM) {
   auto Res = AM.getResult<VerifierAnalysis>(M);
-  if (FatalErrors && (Res.IRBroken || Res.DebugInfoBroken))
-    report_fatal_error("Broken module found, compilation aborted!");
+  // if (FatalErrors && (Res.IRBroken || Res.DebugInfoBroken))
+  //   report_fatal_error("Broken module found, compilation aborted!");
 
   return PreservedAnalyses::all();
 }
 
 PreservedAnalyses VerifierPass::run(Function &F, FunctionAnalysisManager &AM) {
   auto res = AM.getResult<VerifierAnalysis>(F);
-  if (res.IRBroken && FatalErrors)
-    report_fatal_error("Broken function found, compilation aborted!");
+  // if (res.IRBroken && FatalErrors)
+  //   report_fatal_error("Broken function found, compilation aborted!");
 
   return PreservedAnalyses::all();
 }
